@@ -5,6 +5,6 @@ import {
 export const employeeUpdate = ({prop, value}) => {
     return {
         type: EMPLOYEE_UPDATE,
-        pyeload: { prop, value }
+        payload: { prop, value }
     }
 };
