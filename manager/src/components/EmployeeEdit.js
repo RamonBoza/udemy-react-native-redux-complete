@@ -4,9 +4,15 @@ import { connect } from 'react-redux';
 import { employeeUpdate, employeeCreate } from "../actions";
 import EmployeeForm from './EmployeeForm';
 
-class EmployeeCreate extends Component {
+class EmployeeEdit extends Component {
 
-    onButtonPress() {
+    onSaveButtonPress() {
+        const { name, phone, shift } = this.props;
+
+        this.props.employeeCreate( {name, phone, shift: shift || 'Monday' });
+    }
+
+    onDeleteButtonPress() {
         const { name, phone, shift } = this.props;
 
         this.props.employeeCreate( {name, phone, shift: shift || 'Monday' });
@@ -20,8 +26,11 @@ class EmployeeCreate extends Component {
 
                 <EmployeeForm {...this.props} />
                 <CardSection>
-                    <Button onPress={this.onButtonPress.bind(this)}>
-                        Create
+                    <Button onPress={this.onSaveButtonPress.bind(this)}>
+                        Save Changes
+                    </Button>
+                    <Button onPress={this.onDeleteButtonPress.bind(this)}>
+                        Delete
                     </Button>
                 </CardSection>
             </Card>
@@ -35,4 +44,4 @@ const mapStateToProps = (state) => {
 
     return { name, phone, shift };
 }
-export default connect(mapStateToProps, { employeeUpdate, employeeCreate } )(EmployeeCreate);
+export default connect(mapStateToProps, { employeeUpdate, employeeCreate } )(EmployeeEdit);
